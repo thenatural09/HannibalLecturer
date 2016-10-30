@@ -19,16 +19,16 @@ public class Review {
     String text;
 
     @Column(nullable = false)
-    int lecturerId;
-
-    @Column(nullable = false)
     boolean isGood;
 
-    public Review(String author, String text, int lecturerId, boolean isGood) {
+    @ManyToOne
+    Lecturer lecturer;
+
+    public Review(String author, String text, boolean isGood, Lecturer lecturer) {
         this.author = author;
         this.text = text;
-        this.lecturerId = lecturerId;
         this.isGood = isGood;
+        this.lecturer = lecturer;
     }
 
     public Review() {
@@ -36,6 +36,14 @@ public class Review {
 
     public int getId() {
         return id;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
     }
 
     public void setId(int id) {
@@ -56,14 +64,6 @@ public class Review {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public int getLecturerId() {
-        return lecturerId;
-    }
-
-    public void setLecturerId(int lecturerId) {
-        this.lecturerId = lecturerId;
     }
 
     public boolean isGood() {
