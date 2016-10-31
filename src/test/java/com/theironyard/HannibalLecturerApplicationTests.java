@@ -46,4 +46,16 @@ public class HannibalLecturerApplicationTests {
 		);
 		Assert.assertTrue(lecturers.count() == 1);
 	}
+
+	@Test
+	public void bAddReview() throws Exception {
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/reviews")
+					.param("author","Bob")
+					.param("isGood","True")
+					.param("text","Hello")
+					.param("lecturerId","1")
+		);
+		Assert.assertTrue(reviews.count() == 1);
+	}
 }
